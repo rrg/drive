@@ -1,36 +1,34 @@
 import Link from "next/link";
+import { mock } from "node:test";
+
+const mockUrls = [
+"https://xy1ekri9b4.ufs.sh/f/APW1GjNLSNtvbyJdqoE8tJg2hvc3oIXUSmi60uqVsM41aDPe",
+"https://xy1ekri9b4.ufs.sh/f/APW1GjNLSNtviwe56kVMdX1HaREpQs7OebgrV5DfB8lT30Sy",
+"https://xy1ekri9b4.ufs.sh/f/APW1GjNLSNtvMIH4LLoctMZiXq4rejvAsEa60Y7P3g5OCxSd",
+"https://xy1ekri9b4.ufs.sh/f/APW1GjNLSNtvRxmoTYATsgV3P4iaXcKLRxrmd9NIlph7bHEk",
+"https://xy1ekri9b4.ufs.sh/f/APW1GjNLSNtvg1s5zbikd3fnO7GRPbvpKmT0CgBtJ4Ixwq8e",
+"https://xy1ekri9b4.ufs.sh/f/APW1GjNLSNtvMcPByVoctMZiXq4rejvAsEa60Y7P3g5OCxSd",
+"https://xy1ekri9b4.ufs.sh/f/APW1GjNLSNtvXZKzb9Dv2IVNtskLgjoYJGeArwuCDHmF6pXc",
+];
+
+const mockImages = mockUrls.map((url,index) => ({
+  id: index+1,
+  url
+}));
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
+    <main>
+      <div className="flex flex-wrap gap-4">
+        {[...mockImages].map(image => (
+          <div key={image.id} className="w-48 h-48">
+          <img src={image.url} alt={`Image ${image.id}`} className="w-full h-full object-cover rounded-lg" />
+          {/* <p className="text-white text-sm">{image.id}</p> */}
+          </div>
+        ))}
         <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
+          Hello World
         </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
-        </div>
       </div>
     </main>
   );
